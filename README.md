@@ -23,7 +23,7 @@ This solution allows you to:
 
 The solution allows you to define two zones in each video, a waiting zone (Dwell) and a service zone. The purpose of this is to measure how long a person takes in queue (waiting zone) and how long it takes while being served (service zone). 
 
-> It's not necessary to define the zones. In this case, the time of appearance of each person during the video will be measured.
+> It's not necessary to define the zones.  It is not necessary to define the zones. In this case, the solution will time all the people in the video
 
 ## How does the solution work?
 
