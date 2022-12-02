@@ -1,4 +1,4 @@
-# Customer Experience Vision - AWS Marketplace Model Package
+# CxVision - AWS Marketplace Model Package
 
 This repository offers a computer vision solution for tracking people and generate metrics that can be subsequently analyzed to improve the user experience.
 
