@@ -14,9 +14,9 @@ This solution allows you to:
 
 1. [What does the solution do?](#What-does-the-solution-do?)
 2. [How does the solution work?](#How-does-the-solution-work?)
-    - [Real-Time Inference](#1.-Real-time-inference)
-    - [Asynchronous Inference](#2.-Asynchronous-inference)
-        - [Continuous video upload to Amazon S3 Bucket](#Continuous-video-upload-to-Amazon S3)
+    - [Processing independent videos](#1.-Processing-independent-videos)
+    - [Processing stream videos](#2.-Processing-stream-videos)
+        - [Continuous video upload to Amazon S3 Bucket](#Continuous-video-upload-to-Amazon-S3)
         
 ## What does the solution do?
 
@@ -27,26 +27,28 @@ The solution allows you to define two zones in each video, a waiting zone (Dwell
 ## How does the solution work?
 
 You can deploy the CxVision Model Package from AWS Marketplace and then configure some services needed to run the solution.
+The solution could be consumed in two different ways:
 
-You can deploy the model in two different ways:
+### 1. Processing independent videos 
+This deployment mode allows processing independent videos synchronously. The videos to be processed must be stored in Amazon S3. In the following diagram you can see the flow of this process:
 
-### 1. Real-time inference
-This deployment mode allows processing independent videos synchronously. The video to be processed must be stored in an Amazon S3 Bucket. In the following diagram you can see the flow of this process:
+![Processing independent videos](./imgs/realtime-inference.png)
 
-![Realtime-Inference](./imgs/realtime-inference.png)
+To make real-time inferences, please follow the instructions in this notebook: [Processing Independent Videos Notebook](./IndependentVideos.ipynb)
 
-To make real-time inferences, please follow the instructions in this notebook: [Realtime Inference Notebook](./RealTimeInference.ipynb)
+> At the time of the inference, it is necessary to have all the videos that will be processed because they need to be specified in the inference payload.
 
-
-### 2. Asynchronous inference:
+### 2. Processing stream videos
 The objective of this mode is to process a sequence of related videos. This provides the ability of processing videos in near real-time by uploading sequential and constant video fragments to an Amazon S3 Bucket and executing a trigger for each new video fragment. The following diagram shows the flow of this process:
 
-![Asynchronous-Inference](./imgs/asynchronous-inference.png)
+![Processing-stream-videos](./imgs/asynchronous-inference.png)
+
+> Unlike the first scenario, you don't need to have all the videos to start the execution of the solution. When a video is uploaded to the bucket, it is processed by the solution.
 
 #### Continuous video upload to Amazon S3:
 This alternative assume you are uploading constant videos fragments to an Amazon S3 Bucket. You could use any tool to achieve this, such as:
 
-* **Amazon Elemental Media Live**: It is an AWS service allows you to create a streaming video broadcast channel and broadcast the output to different sources, one of these can be an Amazon S3 Bucket. This service can be configured to sequentially broadcast video fragments of a certain length in seconds.
+* **Amazon Elemental Media Live**: This AWS service allows you to create a streaming video broadcast channel and broadcast the output to different sources, one of these can be an Amazon S3 Bucket. This service can be configured to sequentially broadcast video fragments of a certain length in seconds.
 * **Own implementation:** Another alternative is just cut the videos manually and then upload them to S3 Bucket. For this solution we developed a lambda function that receives a video as input, which is divided into fragments with a given duration in seconds and then loaded to a new path of the Amazon S3 Bucket.
 
-To make asynchonous inferences, please follow the instructions in this notebook:  [Asynchronous Inference Notebook](./AsynchronousInference.ipynb)
+To process stream videos, please follow the instructions in this notebook:  [Processing stream videos Notebook](./StreamVideos.ipynb)
