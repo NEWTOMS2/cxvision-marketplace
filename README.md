@@ -47,6 +47,6 @@ The objective of this mode is to process a sequence of related videos. This prov
 This alternative assume you are uploading constant videos fragments to an Amazon S3 Bucket. You could use any tool to achieve this, such as:
 
 * **Amazon Elemental Media Live**: It is an AWS service allows you to create a streaming video broadcast channel and broadcast the output to different sources, one of these can be an Amazon S3 Bucket. This service can be configured to sequentially broadcast video fragments of a certain length in seconds.
-* **Own implementation:** another alternative is to implement your own method to sequentially upload the video fragments to the Amazon S3 Bucket. For this solution we developed a lambda function that receives as input a video, which is divided into fragments with a given duration in seconds and then loaded to a new path of the Amazon S3 Bucket.
+* **Own implementation:** Another alternative is just cut the videos manually and then upload them to S3 Bucket. For this solution we developed a lambda function that receives a video as input, which is divided into fragments with a given duration in seconds and then loaded to a new path of the Amazon S3 Bucket.
 
 To make asynchonous inferences, please follow the instructions in this notebook:  [Asynchronous Inference Notebook](./AsynchronousInference.ipynb)
