@@ -17,6 +17,7 @@ This solution allows you to:
     - [Processing independent videos](#1.-Processing-independent-videos)
     - [Processing stream videos](#2.-Processing-stream-videos)
         - [Continuous video upload to Amazon S3 Bucket](#Continuous-video-upload-to-Amazon-S3)
+3. [Recommendations](#Recommendations)
         
 ## What does the solution do?
 
@@ -29,26 +30,33 @@ The solution allows you to define two zones in each video, a waiting zone (Dwell
 You can deploy the CxVision Model Package from AWS Marketplace and then configure some services needed to run the solution.
 The solution could be consumed in two different ways:
 
-### 1. Processing independent videos 
+### 1. Independent videos processing
 This deployment mode allows processing independent videos synchronously. The videos to be processed must be stored in Amazon S3. In the following diagram you can see the flow of this process:
 
-![Processing independent videos](./imgs/realtime-inference.png)
+![Independent Videos Processing](./imgs/realtime-inference.png)
 
-To make real-time inferences, please follow the instructions in this notebook: [Processing Independent Videos Notebook](./IndependentVideos.ipynb)
+To make real-time inferences, please follow the instructions in this notebook: [Independent Videos Processing Notebook](./IndependentVideos.ipynb)
 
 > At the time of the inference, it is necessary to have all the videos that will be processed because they need to be specified in the inference payload.
 
-### 2. Processing stream videos
+### 2.Stream videos processing
 The objective of this mode is to process a sequence of related videos. This provides the ability of processing videos in near real-time by uploading sequential and constant video fragments to an Amazon S3 Bucket and executing a trigger for each new video fragment. The following diagram shows the flow of this process:
 
 ![Processing-stream-videos](./imgs/asynchronous-inference.png)
 
-> Unlike the first scenario, you don't need to have all the videos to start the execution of the solution. When a video is uploaded to the bucket, it is processed by the solution.
+> Unlike the first scenario, you don't need to have all the videos to start the execution of the solution. When a new video is uploaded to the bucket, it is processed by the solution.
 
 #### Continuous video upload to Amazon S3:
 This alternative assume you are uploading constant videos fragments to an Amazon S3 Bucket. You could use any tool to achieve this, such as:
 
 * **Amazon Elemental Media Live**: This AWS service allows you to create a streaming video broadcast channel and broadcast the output to different sources, one of these can be an Amazon S3 Bucket. This service can be configured to sequentially broadcast video fragments of a certain length in seconds.
-* **Own implementation:** Another alternative is just cut the videos manually and then upload them to S3 Bucket. For this solution we developed a lambda function that receives a video as input, which is divided into fragments with a given duration in seconds and then loaded to a new path of the Amazon S3 Bucket.
 
-To process stream videos, please follow the instructions in this notebook:  [Processing stream videos Notebook](./StreamVideos.ipynb)
+* **Own implementation:** The architecture explained in the [Stream Videos Processing Notebook](./StreamVideos.ipynb) Notebook contains an AWS Lambda function that receives a video as input and divides this video into fragments with a given duration in seconds to finally upload these fragments to a new path of the Amazon S3 Bucket.
+
+To process stream videos, please follow the instructions in this notebook:  [Stream Videos Processing Notebook](./StreamVideos.ipynb)
+
+## Recommendations
+
+1. If the video resolution is greater than 1280 x 720, the solution will resize the video for better processing. However, it could take some time, so we recommend using a resolution lower than 1280 x 720.
+
+2. For better performance, the video fragments for the stream videos processing should have a duration less or equal than 60 seconds.
