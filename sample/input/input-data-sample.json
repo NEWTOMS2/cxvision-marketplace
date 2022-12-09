@@ -2,7 +2,7 @@
     "blurring": false,
     "detection_threshold": 50,
     "timezone": "US/Eastern",
-    "s3_upload_path": "cxvision/videos_out_local",
+    "s3_upload_path": "<your_bucket>/videos_out_local",
     "refresh_threshold": 24,
     "areas":[
         {
