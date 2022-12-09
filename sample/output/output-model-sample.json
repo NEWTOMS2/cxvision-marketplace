@@ -1,7 +1,7 @@
 {
   "videos_processed": 1,
   "s3_results": [
-    "Results uploaded to Bucket sample-bucket \n Video at: videos_out/sample/sample.mp4 \n Metrics at: videos_out/sample/sample.txt"
+    "Results uploaded to Bucket cxvisionsolution \n Video at: endpoint_processing_results/09-12-2022-13:33:23-maki_japan_area_restaurant_2/maki_japan_area_restaurant_2.mp4 \n Metrics at: endpoint_processing_results/09-12-2022-13:33:23-maki_japan_area_restaurant_2/maki_japan_area_restaurant_2.txt"
   ],
   "errors": []
 }
