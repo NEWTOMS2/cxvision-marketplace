@@ -1,0 +1,20 @@
+{
+    "blurring": false,
+    "detection_threshold": 50,
+    "timezone": "US/Eastern",
+    "s3_upload_path": "cxvision/videos_out_local",
+    "refresh_threshold": 24,
+    "areas":[
+        {
+            "area": "restaurant",
+            "dwell_zone": "[(200,500), (500,510), (490,710), (190,700)]",
+            "service_zone": "[(540,580), (1000,645), (990,720), (530,655)]"
+        }
+    ],
+    "videos": [
+        {
+          "path": "s3://<your_bucket>/maki_japan.mp4",
+          "area": "restaurant"
+        }
+    ]
+}
