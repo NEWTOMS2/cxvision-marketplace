@@ -23,6 +23,8 @@ This solution allows you to:
 
 The solution allows you to define two zones in each video, a waiting zone (Dwell) and a service zone. This allows you to measure how long a person takes in queue (waiting zone) and how long it takes while being served (service zone). 
 
+![Cxvision gif](./imgs/cxvision.gif)
+
 > It's not necessary to define the zones. In this case, the solution will measure the time of all the people in the video.
 
 ## How does the solution work?
