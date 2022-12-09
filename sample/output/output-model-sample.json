@@ -1,0 +1,7 @@
+{
+  "videos_processed": 1,
+  "s3_results": [
+    "Results uploaded to Bucket sample-bucket \n Video at: videos_out/sample/sample.mp4 \n Metrics at: videos_out/sample/sample.txt"
+  ],
+  "errors": []
+}
